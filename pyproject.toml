@@ -1,0 +1,11 @@
+[project]
+name = "sy-nodes"
+version = "0.1.0"
+description = "SY Nodes for ComfyUI: one-node Krea2 text-to-image."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[tool.comfy]
+DisplayName = "SY Nodes"

@@ -1,0 +1,272 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "revision": 0,
+  "last_node_id": 5,
+  "last_link_id": 1,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "MarkdownNote",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        640,
+        470
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Stable Yogi - start here",
+      "properties": {},
+      "widgets_values": [
+        "# Stable Yogi - Krea 2 One-Click\n\n**One node. Type a prompt, press Run.**\n\nThe model, the text encoder, the VAE, your LoRAs, the sampler and the decode\nall live inside a single node. Nothing to wire.\n\n### Three steps\n\n1. Set **model** to your Krea 2 file.\n2. Type your **prompt**.\n3. Press **Run**.\n\nThat is the whole thing. Every other setting already has a working default,\nso you can ignore all of them until you want one.\n\n### Want the pro version?\n\nThe course file adds optional face repair, 4x upscaling and an A/B compare.\nYou get it when you finish the Krea 2 course.\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 2,
+      "type": "MarkdownNote",
+      "pos": [
+        40,
+        550
+      ],
+      "size": [
+        640,
+        620
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "What you need",
+      "properties": {},
+      "widgets_values": [
+        "## What you need\n\n| File | Goes in |\n|---|---|\n| the model | `ComfyUI/models/diffusion_models/` |\n| the text encoder | `ComfyUI/models/text_encoders/` |\n| the VAE | `ComfyUI/models/vae/` |\n\nOne node pack: **SY Nodes**. Install it, then **restart** ComfyUI.\nA browser refresh will not do it.\n\n### The text encoder and the VAE find themselves\n\nBoth ship on **auto**. The node looks in your folders and picks the right file\non its own. If it cannot find one it tells you exactly what it looked for, and\nyou set that dropdown by hand.\n\n### Nothing in the model dropdown?\n\nKrea 2 files go in `diffusion_models`, not `checkpoints`. Move them, restart.\n\nBoth `.safetensors` and `.gguf` work:\n\n- `.safetensors` = INT8-ConvRot, fp8-scaled, NVFP4, INT4-ConvRot\n- `.gguf` = Q8_0, Q4_0, Q2_K (needs the **ComfyUI-GGUF** pack by city96)\n\n### It loads but will not run?\n\n- **NVFP4** only runs on an RTX 50 card.\n- **INT4-ConvRot** needs an up-to-date ComfyUI.\n- Stuck? Use **Q8_0**. It runs on everything.\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 3,
+      "type": "SYKrea2OneClick",
+      "pos": [
+        720,
+        40
+      ],
+      "size": [
+        540,
+        800
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [],
+          "slot_index": 1
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": [],
+          "slot_index": 2
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": [],
+          "slot_index": 3
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [],
+          "slot_index": 4
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [],
+          "slot_index": 5
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [],
+          "slot_index": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SYKrea2OneClick"
+      },
+      "widgets_values": [
+        "krea2.safetensors",
+        "a candid portrait of a woman in a linen shirt, standing by a window in soft afternoon light, shallow depth of field, natural skin texture, 35mm film grain",
+        "",
+        "Best (16 steps)",
+        "Portrait 2:3 (960x1440)",
+        0,
+        "randomize",
+        "Off",
+        "None",
+        0.8,
+        "None",
+        0.8,
+        "None",
+        0.8,
+        "auto",
+        "auto",
+        16,
+        2.0,
+        960,
+        1440,
+        1,
+        2.95,
+        "euler",
+        "simple",
+        "default"
+      ],
+      "title": "SY Krea 2 One-Click  -  set model, type prompt, Run"
+    },
+    {
+      "id": 4,
+      "type": "SaveImage",
+      "pos": [
+        1300,
+        40
+      ],
+      "size": [
+        620,
+        700
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "StableYogi/krea2-oneclick"
+      ],
+      "title": "Your picture"
+    },
+    {
+      "id": 5,
+      "type": "MarkdownNote",
+      "pos": [
+        1300,
+        790
+      ],
+      "size": [
+        620,
+        900
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Every setting explained",
+      "properties": {},
+      "widgets_values": [
+        "## Every setting, in one place\n\n| Setting | What it does | Ours |\n|---|---|---|\n| **model** | Your Krea 2 file. Krea 2 names sort to the top | - |\n| **prompt** | Describe the picture you want | - |\n| **negative** | Leave it empty and the node handles it safely for the selected CFG | empty |\n| **quality** | Steps and CFG together, on one dropdown | **Best** |\n| **size** | Eight shapes, or Custom | **960 x 1440** |\n| **seed** | Same seed and same settings give the same picture | random |\n| **detail_pass** | A short second pass that sharpens what is there | **Off** |\n\n### Which quality do I pick\n\n| Setting | Steps | CFG | When |\n|---|---|---|---|\n| **Fast** | 8 | 1 | Trying ideas. Most grain, softest anatomy |\n| **Best** | 16 | 2 | Start here. Clean anatomy, the grain survives |\n| **Max** | 20 | 3 | When a picture needs the push |\n| **Custom** | yours | yours | Turns on `custom_steps` and `custom_cfg` |\n\nAdd steps before you add CFG. Above CFG 3 it starts to oversaturate.\n\nThere is no one right setting. Different pictures want different numbers, so\ntreat these as a starting point, not a rule.\n\n### detail_pass\n\nA second pass at low denoise, on the picture you just made.\n\n- **Off** - one pass. Fastest.\n- **Light** - 0.25 denoise. Tightens edges, keeps everything where it was.\n- **Full** - 0.40 denoise. More bite, and small things can move.\n\n### The rest\n\n`lora_1` to `lora_3` and their strengths, `text_encoder`, `vae`,\n`custom_steps`, `custom_cfg`, `custom_width`, `custom_height`, `batch_size`,\n`shift`, `sampler_name`, `scheduler`, `weight_dtype`.\n\nLeave them alone until you need one.\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      3,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "READ ME FIRST",
+      "bounding": [
+        20,
+        -20,
+        680,
+        1215
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "1  -  MAKE YOUR PICTURE",
+      "bounding": [
+        700,
+        -20,
+        580,
+        885
+      ],
+      "color": "#3f9e5a",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "2  -  YOUR RESULT",
+      "bounding": [
+        1280,
+        -20,
+        660,
+        1725
+      ],
+      "color": "#7a3f9e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.62,
+      "offset": [
+        40,
+        40
+      ]
+    }
+  },
+  "version": 0.4
+}

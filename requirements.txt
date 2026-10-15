@@ -1,0 +1,7 @@
+# Intentionally empty.
+#
+# SY Krea 2 One-Click imports only modules that ship inside ComfyUI:
+#   torch, comfy.samplers, folder_paths, nodes
+#
+# There is nothing to install and nothing that can disturb an existing
+# ComfyUI Python environment.

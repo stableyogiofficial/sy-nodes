@@ -1,0 +1,3 @@
+__pycache__/
+*.py[cod]
+/tests/run_station1_matrix.py
